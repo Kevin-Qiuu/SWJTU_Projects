@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from torchcam.utils import overlay_mask
 import npr_option
 
+# NPR 开源权重 NPR + ResNet50
 model_path = './model_epoch_last_3090.pth'
 # get model
 model = resnet50(num_classes=1)

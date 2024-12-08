@@ -4,6 +4,7 @@ import numpy as np
 import torch
 from torch.nn import functional as F
 
+# 使用 OpenCV 根据路径读取图像
 img_1 = cv2.imread('./SomeFakeImages/fake_1.png')
 
 # 与以左上角元素作为参考所得结果大致相同
