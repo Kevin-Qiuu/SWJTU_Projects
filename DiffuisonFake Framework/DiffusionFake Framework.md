@@ -12,7 +12,7 @@
 
 使用的是 weight module，对 encoder 提取出的Target 特征和 Source 特征动态调整二者对最终特征提取的权重， VAE-E 模块对伪造图像、源图像和目标图像编码后得到特征，然后分别计算 z 与 z_t 和 z_s的相似度，作为 weight-module 的标签，这个 idea 值得借鉴。
 
-Guide-moudle
+**Guide-moudle**
 
 在这篇工作中，指导模块与冻结的 stable-diffution 模块的编码器结构相同，Feature-moudle、Weight-module 和 Guide-moudle 共同提高 encoder 和 classfier 的能力。
 
@@ -28,11 +28,15 @@ Stable-Diffusion 与 Guide-module 提取的特征合并作为后续生成源图�
 
 ### 成效
 
-结果：Feature-filter（Target-filter&Source-filter）更能剥离Encoder 的特征；Weight-module 更能为源图像和目标图像作动态权重划分；指导模型更能够提取和总结上述特征并与 Stable-diffusion 共同生成源图像和目标图像。
+成效的探讨都是在训练过程中的：
 
-上述的结果是文章提出的 DiffusionFake 框架在训练后得到的效果，但一切都是为了提升 Encoder 对伪造图像提取出其中的源图像与目标图像之间的不可见特征（原因在于梯度传播，使得 Encoder 借助了非常强大的预训练 Stable-Diffuion 模型的能力去进行训练，有点蒸馏模型的意思）和分类头的分类效果。
+​	1）特征过滤模块与权重模块通过剥离伪造图像中源图像与目标图像的特征以及为源图像和目标图像的特征作动态权重划分，提升了Encoder对伪造图像中源图像和目标图像的解耦能力；
 
-上述就是这篇文献的核心思想，通过借助了 Stable-Diffusion 和 DiffusionFake 框架训练好了 Encoder，进而使得模型获得了大量先验知识，使得其在最后推理过程中代价变低（DeepSeek？）
+​	2）Guide-moudle 通过提取和总结上述特征并与 Stable-diffusion 共同生成源图像和目标图像，使得Encoder更能学习到伪造图像中源图像与目标图像的特征，进而更理解伪造图像的语义特征。
+
+​	3）DiffusionFake 训练框架的使用提升了 Encoder 对伪造图像其中的源图像与目标图像之间的不可见特征的分析能力和分类头的回归效果。
+
+通过借助了 DiffusionFake 框架训练好了 Encoder 和 分类头，进而使得模型获得了大量先验知识，使得其在最后推理过程中代价变低，有一些蒸馏模型的意思。
 
 ---
 
@@ -43,3 +47,5 @@ Stable-Diffusion 与 Guide-module 提取的特征合并作为后续生成源图�
 2. 换一个更牛的扩散模型？
 
 3. Encoder、Feature-Moudle、Weight-Moudle、Guide-Module 的结构？
+
+4. 用这个插件训练一个其他的模型？
