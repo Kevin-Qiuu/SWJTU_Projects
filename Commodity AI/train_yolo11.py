@@ -13,4 +13,4 @@ results = model.train(
         name='train_all_images'  
     )
 
-results = model.train(data="coco8.yaml", epochs=400, imgsz=640)
+# results = model.train(data="coco8.yaml", epochs=400, imgsz=640)
