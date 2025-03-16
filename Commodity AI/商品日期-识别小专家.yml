@@ -1,0 +1,923 @@
+app:
+  description: ''
+  icon: fries
+  icon_background: '#FEF7C3'
+  mode: workflow
+  name: 商品日期-识别小专家
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.11@5077dd5c6ff5bc5dc1b2772e460325ae2cc2619a7c0fd151d69bc5841edba5bd
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1742047480074-source-1742047727369-target
+      selected: false
+      source: '1742047480074'
+      sourceHandle: source
+      target: '1742047727369'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: if-else
+      id: 17420538682840-source-1742095244184-target
+      selected: false
+      source: '17420538682840'
+      sourceHandle: source
+      target: '1742095244184'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1742095244184-true-1742095293947-target
+      selected: false
+      source: '1742095244184'
+      sourceHandle: 'true'
+      target: '1742095293947'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1742095244184-false-1742095568052-target
+      selected: false
+      source: '1742095244184'
+      sourceHandle: 'false'
+      target: '1742095568052'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: end
+      id: 1742095870423-source-1742095954499-target
+      selected: false
+      source: '1742095870423'
+      sourceHandle: source
+      target: '1742095954499'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1742095244184-b4831db3-34bc-46b0-8776-6977b96873fe-1742097351862-target
+      source: '1742095244184'
+      sourceHandle: b4831db3-34bc-46b0-8776-6977b96873fe
+      target: '1742097351862'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1742097351862-source-1742095510699-target
+      source: '1742097351862'
+      sourceHandle: source
+      target: '1742095510699'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742095510699-source-1742095870423-target
+      source: '1742095510699'
+      sourceHandle: source
+      target: '1742095870423'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1742047037182-source-17420538682840-target
+      selected: false
+      source: '1742047037182'
+      sourceHandle: source
+      target: '17420538682840'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742095244184-fc222ae3-71f0-4501-abda-d5f21bf9f0d1-1742095541263-target
+      source: '1742095244184'
+      sourceHandle: fc222ae3-71f0-4501-abda-d5f21bf9f0d1
+      target: '1742095541263'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742095541263-source-1742095870423-target
+      source: '1742095541263'
+      sourceHandle: source
+      target: '1742095870423'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: input_image
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: input_image
+        - label: Error
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: Error
+      height: 116
+      id: '1742047037182'
+      position:
+        x: 219.34346983880857
+        y: 51.2375111319252
+      positionAbsolute:
+        x: 219.34346983880857
+        y: 51.2375111319252
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742047037182'
+          - input_image
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-72b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 2d977734-e0fd-4cd4-b222-3cea9bd28095
+          role: system
+          text: "请提取这张照片{{#context#}}的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”。返回的结果信息以json格式返回，返回信息的格式如下：\n\
+            {\n  \"生产日期\": \" yyyy-mm-dd\",\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\"\
+            : \"\"\n}\n"
+        selected: false
+        title: LLM-三期码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '1742047480074'
+      position:
+        x: -171.01077875850638
+        y: -464.57854240095304
+      positionAbsolute:
+        x: -171.01077875850638
+        y: -464.57854240095304
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742047480074'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1742047727369'
+      position:
+        x: 166.80954131705482
+        y: -464.57854240095304
+      positionAbsolute:
+        x: 166.80954131705482
+        y: -464.57854240095304
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-3b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 2d977734-e0fd-4cd4-b222-3cea9bd28095
+          role: system
+          text: '# Role: 食品包装日期码识别专家
+
+
+            ## Profile
+
+            - 专长：食品包装定位、日期格式解析、图像增强处理
+
+            - 经验：处理过3000+种食品包装的三期码识别案例
+
+            - 技能：精通中文日期格式、多语言混合识别、模糊图像处理
+
+
+            ## Goals
+
+            - 根据用户上传的商品外包装码图像准确识别日期码类型
+
+            - 返回对应的日期码类型
+
+
+            ## Rules
+
+            - 仔细分析商品包装日期码上的所有视觉和文字信息
+
+            - 只返回指定的日期码代码,不做其他解释
+
+            - 如果无法确定日期码类型,返回代码0
+
+
+            ## Workflows
+
+            -1. 接收用户上传的商品外包装图像
+
+            -2. 分析图像中的关键信息和特征
+
+            -3. 对比不同类型日期码的特征
+
+            -4. 确定图像中的日期码类型
+
+            -5. 返回对应的类型代码
+
+
+            ## Output Format
+
+            日期码类型代码：
+
+            -0: 不可识别状态
+
+            -1: 单期码（包含单一日期信息，如生产日期或到期日期）
+
+            -2: 双期码及以上（包含两条及以上日期信息，通常为生产日期与到期日期组合）
+
+
+            ## Examples
+
+            用户: [上传模糊不清或者没有日期码的图像]
+
+            特征: 图像模糊，无法辨别关键信息，不包含关键信息。
+
+            AI: 0
+
+
+            用户: [上传一期码图像]
+
+            特征: 只有一条数字码，有的一期码会有生产日期字样和日期码，有的只有一条日期码，类似于：yyyyMMdd。
+
+            AI: 1
+
+
+            用户: [上传双期码及以上图像]
+
+            特征如下:
+
+            - 两条数字码，可能为生产日期与保质期，生产日期与产品编号，或保质期与产品编号。
+
+            - 三条数字码，通常为产品编号、生产日期和保质期。
+
+            - 四条及以上数字码，除了产品编号、生产日期和保质期以外会有更多条码信息。
+
+            AI: 2'
+        selected: false
+        title: LLM-日期码分类
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '17420538682840'
+      position:
+        x: 576.0613201000767
+        y: 51.2375111319252
+      positionAbsolute:
+        x: 576.0613201000767
+        y: 51.2375111319252
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 3758e952-a8a3-4043-b1fb-a7b90435c44f
+            value: '0'
+            varType: string
+            variable_selector:
+            - '17420538682840'
+            - text
+          id: 'true'
+          logical_operator: and
+        - case_id: b4831db3-34bc-46b0-8776-6977b96873fe
+          conditions:
+          - comparison_operator: contains
+            id: ad4c9459-ea3d-475d-9d0e-8aac29364ab7
+            value: '1'
+            varType: string
+            variable_selector:
+            - '17420538682840'
+            - text
+          id: b4831db3-34bc-46b0-8776-6977b96873fe
+          logical_operator: and
+        - case_id: fc222ae3-71f0-4501-abda-d5f21bf9f0d1
+          conditions:
+          - comparison_operator: contains
+            id: 947d86d1-e79b-43f9-92af-d922ecfb691c
+            value: '2'
+            varType: string
+            variable_selector:
+            - '17420538682840'
+            - text
+          id: fc222ae3-71f0-4501-abda-d5f21bf9f0d1
+          logical_operator: and
+        - case_id: 1c4eb703-12cd-428d-8020-197472d6f637
+          conditions: []
+          id: 1c4eb703-12cd-428d-8020-197472d6f637
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 246
+      id: '1742095244184'
+      position:
+        x: 930.4319322627166
+        y: -123.17609655020036
+      positionAbsolute:
+        x: 930.4319322627166
+        y: -123.17609655020036
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '17420538682840'
+          - text
+          variable: text
+        - value_selector:
+          - '1742047037182'
+          - Error
+          variable: Error
+        selected: false
+        title: 结束 2
+        type: end
+      height: 116
+      id: '1742095293947'
+      position:
+        x: 1344.469068914329
+        y: -158.75399639587204
+      positionAbsolute:
+        x: 1344.469068914329
+        y: -158.75399639587204
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-7b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 06233f22-a5f7-459c-a0b1-6afcf6688a0c
+          role: system
+          text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’或‘保质期’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”，如果不包含上述日期，则字段对应的信息为\
+            \ null。\n\n# 识别保质期和生产日期的规则如下：\n-如果图像中有明确标识日期码的名称，则以图像中的标识为准。\n-如果没有则将识别出的日期与{{#1742097351862.text#}}进行比对，如果小于这个日期则为生产日期，如果大于这个日期则为保质期。\n\
+            \n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
+            ,\n  \"保质期至\": null\n}\n"
+        selected: false
+        title: LLM-单期码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '1742095510699'
+      position:
+        x: 1678.814281400448
+        y: -0.03343106820976516
+      positionAbsolute:
+        x: 1678.814281400448
+        y: -0.03343106820976516
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-3b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 6bded9db-5531-4c0d-9bfa-2d67659fde95
+          role: system
+          text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”，如果不包含上述日期，则字段对应的信息为\
+            \ null。\n\n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
+            ,\n  \"保质期至\": null\n}\n"
+        selected: false
+        title: LLM-双期码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '1742095526179'
+      position:
+        x: -171.01077875850638
+        y: -223.57520819796724
+      positionAbsolute:
+        x: -171.01077875850638
+        y: -223.57520819796724
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-3b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: c6a2dee6-b0f2-4e99-bc4d-2e3846306eef
+          role: system
+          text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”。\n\
+            \n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
+            ,\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\": \"\"\n}\n"
+        selected: false
+        title: LLM-三期码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '1742095534453'
+      position:
+        x: -171.01077875850638
+        y: -337.94685437567097
+      positionAbsolute:
+        x: -171.01077875850638
+        y: -337.94685437567097
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-vl-72b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 2f38053b-3096-4e94-ae70-f1ead4f21158
+          role: system
+          text: "# 任务 \n- 请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，注意字段的顺序不要发生改变。\n\
+            - 注意产品批号在有的图像中可能是生产批号、商品批号，只要有批号一律认为是产品批号，\n- 只提取并返回生产日期、保质期至、产品批号三个字段，其他内容不予考虑。\n\
+            - 如果某个字段未能提取到信息，请返回null。\n\n# 返回格式 \n返回结果应为JSON格式，具体结构如下：\n{\n  \"生产日期\"\
+            : \"yyyy-mm-dd\",\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\": \"\"\n}"
+        selected: false
+        title: LLM-多期码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1742047037182'
+            - input_image
+          enabled: true
+      height: 90
+      id: '1742095541263'
+      position:
+        x: 1562.4490474735067
+        y: 249.11225034356232
+      positionAbsolute:
+        x: 1562.4490474735067
+        y: 249.11225034356232
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742047037182'
+          - Error
+          variable: Error
+        selected: false
+        title: 结束 3
+        type: end
+      height: 90
+      id: '1742095568052'
+      position:
+        x: 1562.4490474735067
+        y: 380.57234659041313
+      positionAbsolute:
+        x: 1562.4490474735067
+        y: 380.57234659041313
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1742095510699'
+          - text
+        - - '1742095541263'
+          - text
+      height: 130
+      id: '1742095870423'
+      position:
+        x: 1999.9705119173564
+        y: 51.2375111319252
+      positionAbsolute:
+        x: 1999.9705119173564
+        y: 51.2375111319252
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742095870423'
+          - output
+          variable: output
+        selected: false
+        title: 结束 4
+        type: end
+      height: 90
+      id: '1742095954499'
+      position:
+        x: 2378.5713022768996
+        y: 83.92677998074288
+      positionAbsolute:
+        x: 2378.5713022768996
+        y: 83.92677998074288
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Shanghai
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1742097351862'
+      position:
+        x: 1335.6170900895909
+        y: -12.818025515841413
+      positionAbsolute:
+        x: 1335.6170900895909
+        y: -12.818025515841413
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -425.8981328682628
+      y: 232.9820710411663
+      zoom: 0.9037527267510861
