@@ -58,19 +58,6 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: llm
-        targetType: end
-      id: 1742047480074-source-1742047727369-target
-      selected: false
-      source: '1742047480074'
-      sourceHandle: source
-      target: '1742047727369'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: llm
         targetType: if-else
       id: 17420538682840-source-1742095244184-target
       selected: false
@@ -156,21 +143,10 @@ workflow:
       zIndex: 0
     - data:
         isInLoop: false
-        sourceType: start
-        targetType: llm
-      id: 1742047037182-source-17420538682840-target
-      selected: false
-      source: '1742047037182'
-      sourceHandle: source
-      target: '17420538682840'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
         sourceType: if-else
         targetType: llm
       id: 1742095244184-fc222ae3-71f0-4501-abda-d5f21bf9f0d1-1742095541263-target
+      selected: false
       source: '1742095244184'
       sourceHandle: fc222ae3-71f0-4501-abda-d5f21bf9f0d1
       target: '1742095541263'
@@ -182,9 +158,21 @@ workflow:
         sourceType: llm
         targetType: variable-aggregator
       id: 1742095541263-source-1742095870423-target
+      selected: false
       source: '1742095541263'
       sourceHandle: source
       target: '1742095870423'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1742047037182-source-17420538682840-target
+      source: '1742047037182'
+      sourceHandle: source
+      target: '17420538682840'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -200,94 +188,21 @@ workflow:
           - image
           allowed_file_upload_methods:
           - local_file
-          - remote_url
-          label: input_image
+          label: input_img
           max_length: 48
           options: []
           required: true
           type: file
-          variable: input_image
-        - label: Error
-          max_length: 48
-          options: []
-          required: true
-          type: text-input
-          variable: Error
-      height: 116
+          variable: input_img
+      height: 90
       id: '1742047037182'
       position:
-        x: 219.34346983880857
-        y: 51.2375111319252
+        x: 30
+        y: 388
       positionAbsolute:
-        x: 219.34346983880857
-        y: 51.2375111319252
+        x: 30
+        y: 388
       selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        context:
-          enabled: true
-          variable_selector:
-          - '1742047037182'
-          - input_image
-        desc: ''
-        model:
-          completion_params:
-            temperature: 0.7
-          mode: chat
-          name: qwen2.5-vl-72b-instruct
-          provider: langgenius/tongyi/tongyi
-        prompt_template:
-        - id: 2d977734-e0fd-4cd4-b222-3cea9bd28095
-          role: system
-          text: "请提取这张照片{{#context#}}的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”。返回的结果信息以json格式返回，返回信息的格式如下：\n\
-            {\n  \"生产日期\": \" yyyy-mm-dd\",\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\"\
-            : \"\"\n}\n"
-        selected: false
-        title: LLM-三期码
-        type: llm
-        variables: []
-        vision:
-          configs:
-            detail: high
-            variable_selector:
-            - '1742047037182'
-            - input_image
-          enabled: true
-      height: 90
-      id: '1742047480074'
-      position:
-        x: -171.01077875850638
-        y: -464.57854240095304
-      positionAbsolute:
-        x: -171.01077875850638
-        y: -464.57854240095304
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        outputs:
-        - value_selector:
-          - '1742047480074'
-          - text
-          variable: text
-        selected: false
-        title: 结束
-        type: end
-      height: 90
-      id: '1742047727369'
-      position:
-        x: 166.80954131705482
-        y: -464.57854240095304
-      positionAbsolute:
-        x: 166.80954131705482
-        y: -464.57854240095304
-      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -394,16 +309,16 @@ workflow:
             detail: high
             variable_selector:
             - '1742047037182'
-            - input_image
+            - input_img
           enabled: true
       height: 90
       id: '17420538682840'
       position:
-        x: 576.0613201000767
-        y: 51.2375111319252
+        x: 335.12238930952515
+        y: 388
       positionAbsolute:
-        x: 576.0613201000767
-        y: 51.2375111319252
+        x: 335.12238930952515
+        y: 388
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -444,22 +359,18 @@ workflow:
             - text
           id: fc222ae3-71f0-4501-abda-d5f21bf9f0d1
           logical_operator: and
-        - case_id: 1c4eb703-12cd-428d-8020-197472d6f637
-          conditions: []
-          id: 1c4eb703-12cd-428d-8020-197472d6f637
-          logical_operator: and
         desc: ''
         selected: false
         title: 条件分支
         type: if-else
-      height: 246
+      height: 222
       id: '1742095244184'
       position:
-        x: 930.4319322627166
-        y: -123.17609655020036
+        x: 638
+        y: 388
       positionAbsolute:
-        x: 930.4319322627166
-        y: -123.17609655020036
+        x: 638
+        y: 388
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -472,21 +383,19 @@ workflow:
           - '17420538682840'
           - text
           variable: text
-        - value_selector:
-          - '1742047037182'
-          - Error
+        - value_selector: []
           variable: Error
         selected: false
         title: 结束 2
         type: end
-      height: 116
+      height: 90
       id: '1742095293947'
       position:
-        x: 1344.469068914329
-        y: -158.75399639587204
+        x: 1064.5214550848632
+        y: 223.03361226073775
       positionAbsolute:
-        x: 1344.469068914329
-        y: -158.75399639587204
+        x: 1064.5214550848632
+        y: 223.03361226073775
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -508,8 +417,8 @@ workflow:
           role: system
           text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’或‘保质期’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”，如果不包含上述日期，则字段对应的信息为\
             \ null。\n\n# 识别保质期和生产日期的规则如下：\n-如果图像中有明确标识日期码的名称，则以图像中的标识为准。\n-如果没有则将识别出的日期与{{#1742097351862.text#}}进行比对，如果小于这个日期则为生产日期，如果大于这个日期则为保质期。\n\
-            \n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
-            ,\n  \"保质期至\": null\n}\n"
+            \n# 返回格式\n返回结果是 JSON 格式，具体结构如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\",\n  \"\
+            保质期至\": null\n}"
         selected: false
         title: LLM-单期码
         type: llm
@@ -519,16 +428,16 @@ workflow:
             detail: high
             variable_selector:
             - '1742047037182'
-            - input_image
+            - input_img
           enabled: true
       height: 90
       id: '1742095510699'
       position:
-        x: 1678.814281400448
-        y: -0.03343106820976516
+        x: 1376.657484200489
+        y: 399.05602043456304
       positionAbsolute:
-        x: 1678.814281400448
-        y: -0.03343106820976516
+        x: 1376.657484200489
+        y: 399.05602043456304
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -543,96 +452,14 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: qwen2.5-vl-3b-instruct
-          provider: langgenius/tongyi/tongyi
-        prompt_template:
-        - id: 6bded9db-5531-4c0d-9bfa-2d67659fde95
-          role: system
-          text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”，如果不包含上述日期，则字段对应的信息为\
-            \ null。\n\n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
-            ,\n  \"保质期至\": null\n}\n"
-        selected: false
-        title: LLM-双期码
-        type: llm
-        variables: []
-        vision:
-          configs:
-            detail: high
-            variable_selector:
-            - '1742047037182'
-            - input_image
-          enabled: true
-      height: 90
-      id: '1742095526179'
-      position:
-        x: -171.01077875850638
-        y: -223.57520819796724
-      positionAbsolute:
-        x: -171.01077875850638
-        y: -223.57520819796724
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        model:
-          completion_params:
-            temperature: 0.7
-          mode: chat
-          name: qwen2.5-vl-3b-instruct
-          provider: langgenius/tongyi/tongyi
-        prompt_template:
-        - id: c6a2dee6-b0f2-4e99-bc4d-2e3846306eef
-          role: system
-          text: "# 任务\n请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，字段的顺序不要发生改变，生产日期与保质期的格式为“yyyy-mm-dd”。\n\
-            \n# 返回格式\n返回的结果信息以json格式返回，返回信息的格式如下：\n{\n  \"生产日期\": \" yyyy-mm-dd\"\
-            ,\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\": \"\"\n}\n"
-        selected: false
-        title: LLM-三期码
-        type: llm
-        variables: []
-        vision:
-          configs:
-            detail: high
-            variable_selector:
-            - '1742047037182'
-            - input_image
-          enabled: true
-      height: 90
-      id: '1742095534453'
-      position:
-        x: -171.01077875850638
-        y: -337.94685437567097
-      positionAbsolute:
-        x: -171.01077875850638
-        y: -337.94685437567097
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        model:
-          completion_params:
-            temperature: 0.7
-          mode: chat
-          name: qwen2.5-vl-72b-instruct
+          name: qwen2.5-vl-7b-instruct
           provider: langgenius/tongyi/tongyi
         prompt_template:
         - id: 2f38053b-3096-4e94-ae70-f1ead4f21158
           role: system
           text: "# 任务 \n- 请提取这张照片的内容，其中内容格式以‘生产日期’‘保质期’‘产品批号’字段返回信息，注意字段的顺序不要发生改变。\n\
             - 注意产品批号在有的图像中可能是生产批号、商品批号，只要有批号一律认为是产品批号，\n- 只提取并返回生产日期、保质期至、产品批号三个字段，其他内容不予考虑。\n\
-            - 如果某个字段未能提取到信息，请返回null。\n\n# 返回格式 \n返回结果应为JSON格式，具体结构如下：\n{\n  \"生产日期\"\
+            - 如果某个字段未能提取到信息，请返回null。\n\n# 返回格式 \n返回结果是 JSON 格式，具体结构如下：\n{\n  \"生产日期\"\
             : \"yyyy-mm-dd\",\n  \"保质期至\": \"yyyy-mm-dd\",\n  \"产品批号\": \"\"\n}"
         selected: false
         title: LLM-多期码
@@ -643,39 +470,35 @@ workflow:
             detail: high
             variable_selector:
             - '1742047037182'
-            - input_image
+            - input_img
           enabled: true
       height: 90
       id: '1742095541263'
       position:
-        x: 1562.4490474735067
-        y: 249.11225034356232
+        x: 1064.5214550848632
+        y: 620.2178173727053
       positionAbsolute:
-        x: 1562.4490474735067
-        y: 249.11225034356232
-      selected: false
+        x: 1064.5214550848632
+        y: 620.2178173727053
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
         desc: ''
-        outputs:
-        - value_selector:
-          - '1742047037182'
-          - Error
-          variable: Error
+        outputs: []
         selected: false
         title: 结束 3
         type: end
-      height: 90
+      height: 54
       id: '1742095568052'
       position:
-        x: 1562.4490474735067
-        y: 380.57234659041313
+        x: 1064.5214550848632
+        y: 797.7944426757881
       positionAbsolute:
-        x: 1562.4490474735067
-        y: 380.57234659041313
+        x: 1064.5214550848632
+        y: 797.7944426757881
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -692,14 +515,14 @@ workflow:
           - text
         - - '1742095541263'
           - text
-      height: 130
+      height: 131
       id: '1742095870423'
       position:
-        x: 1999.9705119173564
-        y: 51.2375111319252
+        x: 1804.5237370512932
+        y: 500.42793862977715
       positionAbsolute:
-        x: 1999.9705119173564
-        y: 51.2375111319252
+        x: 1804.5237370512932
+        y: 500.42793862977715
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -718,11 +541,11 @@ workflow:
       height: 90
       id: '1742095954499'
       position:
-        x: 2378.5713022768996
-        y: 83.92677998074288
+        x: 2182.5755639113318
+        y: 558.042194294683
       positionAbsolute:
-        x: 2378.5713022768996
-        y: 83.92677998074288
+        x: 2182.5755639113318
+        y: 558.042194294683
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -907,17 +730,17 @@ workflow:
       height: 116
       id: '1742097351862'
       position:
-        x: 1335.6170900895909
-        y: -12.818025515841413
+        x: 1064.5214550848632
+        y: 399.05602043456304
       positionAbsolute:
-        x: 1335.6170900895909
-        y: -12.818025515841413
+        x: 1064.5214550848632
+        y: 399.05602043456304
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: -425.8981328682628
-      y: 232.9820710411663
-      zoom: 0.9037527267510861
+      x: -51.83359248187162
+      y: -147.52349115882396
+      zoom: 0.8946695542421366
