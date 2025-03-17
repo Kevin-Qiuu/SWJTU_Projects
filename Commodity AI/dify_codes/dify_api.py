@@ -74,6 +74,10 @@ def execute_on_dify(file_path, api_key, base_url, user="KevinQiu"):
         # 文件上传成功，继续运行工作流
         result = run_workflow(file_id, api_key, base_url, user)
         # print(result['data']['outputs']['output'])
+        elapsed_time = result.get('data').get("elapsed_time")  # 推理总用时
+        total_tokens = result.get('data').get("total_tokens")  # 推理总 token
+        total_steps = result.get('data').get("total_steps")
+        print(f"Dify : elapsed_time: {elapsed_time:.2f}s, total_tokes: {total_tokens}, total_steps: {total_steps}, user: {user}")
         result = execute2json.extract_json(result.get('data').get('outputs').get('output'))
         return result
     else:

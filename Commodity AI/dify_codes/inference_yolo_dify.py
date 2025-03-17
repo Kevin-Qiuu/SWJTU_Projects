@@ -27,21 +27,22 @@ def make_bboxes(model, results):
 
 
 
-def inference_work(weight, input_img, api_key, base_url):
+def inference_work(weight, input_img, api_key, base_url, user="kevinqiu"):
     model = YOLO(weight)
     results = model(input_img)
     bboxes = make_bboxes(model, results)
     results = []
     for bbox in bboxes:
-        results.append(dify_api.execute_on_dify(bbox, api_key, base_url))
+        results.append(dify_api.execute_on_dify(bbox, api_key, base_url, user))
     return results
 
 
 if __name__ == '__main__':
     rets = inference_work(weight="yolov11n_all_commodity.pt",  # yolo 模型权重
-                          input_img="test_imgs/test_3_qi_ma_bar.jpg",  # 商品外包装图像
+                          input_img="test_imgs/test_1_qi_ma_bar.jpg",  # 商品外包装图像
                           api_key="app-ScBngBz8Or67tKg3h9QwyI7i",  # dify 的 API 密钥
-                          base_url="http://127.0.0.1/v1")  # 后端的 API 服务器 IP
+                          base_url="http://127.0.0.1/v1",
+                          user="kevinqiu")  # 后端的 API 服务器 IP
     for i, ret in enumerate(rets):
         print(f"======== 第 {i} 个 bbox 信息 ========")
         print(ret)
