@@ -4,10 +4,11 @@ import json
 import execute2json
 
 
-def upload_file(file_path, user):
-    upload_url = "http://127.0.0.1/v1/files/upload"
+def upload_file(file_path, api_key, base_url, user="kevinqiu"):
+    upload_url = f"{base_url}/files/upload"
     headers = {
-        "Authorization": "Bearer app-ScBngBz8Or67tKg3h9QwyI7i",
+        # "Authorization": f"Bearer {api_key}",
+        "Authorization": f"Bearer {api_key}",
     }
 
     try:
@@ -33,10 +34,10 @@ def upload_file(file_path, user):
         return None
 
 
-def run_workflow(file_id, user, response_mode="blocking"):
-    workflow_url = "http://127.0.0.1/v1/workflows/run"
+def run_workflow(file_id, api_key, base_url, user="kevinqiu", response_mode="blocking"):
+    workflow_url = f"{base_url}/workflows/run"
     headers = {
-        "Authorization": "Bearer app-ScBngBz8Or67tKg3h9QwyI7i",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
 
@@ -66,19 +67,20 @@ def run_workflow(file_id, user, response_mode="blocking"):
         return {"status": "error", "message": str(e)}
 
 
-def execute_on_dify(file_path, user="KevinQiu"):
+def execute_on_dify(file_path, api_key, base_url, user="KevinQiu"):
     # 上传文件
-    file_id = upload_file(file_path, user)
+    file_id = upload_file(file_path, api_key, base_url, user)
     if file_id:
         # 文件上传成功，继续运行工作流
-        result = run_workflow(file_id, user)
+        result = run_workflow(file_id, api_key, base_url, user)
         # print(result['data']['outputs']['output'])
-        result = execute2json.extract_json(result['data']['outputs']['output'])
+        result = execute2json.extract_json(result.get('data').get('outputs').get('output'))
         return result
-        # print(result)
     else:
-        print("文件上传失败，无法执行工作流")
+        print("dify : 文件上传失败，无法执行工作流")
 
 if __name__ == '__main__':
-    ret = execute_on_dify("yolo_inference/1742145129_0.png")
+    ret = execute_on_dify("yolo_inference/1742145129_0.png",
+                          api_key="app-ScBngBz8Or67tKg3h9QwyI7i",
+                          base_url="http://127.0.0.1/v1")
     print(ret)
