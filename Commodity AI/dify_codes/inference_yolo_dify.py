@@ -1,4 +1,5 @@
-from pyzbar import pyzbar
+import zxing
+
 from ultralytics import YOLO
 import cv2
 import time
@@ -29,14 +30,9 @@ def make_bboxes(model, results):
 
 
 def inference_barcode(barcode_bboxes):
-    results = []
+    reader = zxing.BarCodeReader()
 
-    for bbox_path in barcode_bboxes:
-        bbox_img = cv2.imread(bbox_path)
-        barcodes = pyzbar.decode(bbox_img)
-        barcodes_rets = [barcode.data.decode('utf-8') for barcode in barcodes]
-        if barcodes_rets:
-            results.append(*barcodes_rets)
+    results = [reader.decode(bbox_path).raw for bbox_path in barcode_bboxes]
 
     return results
 
@@ -67,21 +63,17 @@ def inference_work(weight, input_img, api_key, base_url, user="kevinqiu"):
 if __name__ == '__main__':
 
     rets = inference_work(weight="yolov11n_all_commodity.pt",  # yolo 模型权重
-                          input_img="test_imgs/so_many_codes.jpg",  # 商品外包装图像
+                          input_img="test_imgs/test_3_qi_ma_bar.jpg",  # 商品外包装图像
                           api_key="app-ScBngBz8Or67tKg3h9QwyI7i",  # dify 的 API 密钥
-                          base_url="http://127.0.0.1/v1",
-                          user="kevinqiu")  # 后端的 API 服务器 IP
+                          base_url="http://127.0.0.1/v1",  # 后端的 API 服务器 IP
+                          user="kevinqiu")  # 向 dify 服务器发送请求的用户名称
+
 
     print("============ Barcode ===============")
-
     for i, ret in enumerate(rets[0]):
-        # print(f"======== 第 {i} 个 bbox 信息 ========")
         print(ret)
-        # print("====================================")
+
 
     print("============ Datecode =============")
-
     for i, ret in enumerate(rets[1]):
-        # print(f"======== 第 {i} 个 bbox 信息 ========")
         print(ret)
-        # print("====================================")
