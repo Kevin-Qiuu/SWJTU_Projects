@@ -4,6 +4,8 @@ from datetime import datetime
 import paddleocr
 
 
+
+
 def extract_dates(text):
     """支持全格式灵活解析的日期提取函数"""
     patterns = [
@@ -62,10 +64,23 @@ def ocr_identify_date(ocr_model, input_path):
     return date_texts
 
 
-def inference_datecode(ocr_model, datecode_bboxes_paths):
+# 存储每个日期码的类别和对应的日期文本
+def inference_datecode_with_cls(ocr_model, datecode_bboxes):
     datecode_results = []
-    for datecode_bbox_path in datecode_bboxes_paths:
-        date_texts = ocr_identify_date(ocr_model, datecode_bbox_path)
+    for datecode_bbox in datecode_bboxes:
+        date_texts = ocr_identify_date(ocr_model, datecode_bbox["bbox_img"])
+        # 每一个 datecode_result 都保存当前日期码的类别和对应的日期文本
+        datecode_result = [datecode_bbox["bbox_cls"]]
+        for date_text in date_texts:
+            datecode_result.append(date_text)
+        datecode_results.append(datecode_result)
+    return datecode_results
+
+
+def inference_datecode(ocr_model, datecode_bboxes):
+    datecode_results = []
+    for datecode_bbox in datecode_bboxes:
+        date_texts = ocr_identify_date(ocr_model, datecode_bbox["bbox_img"])
         for date_text in date_texts:
             datecode_results.append(date_text)
     return datecode_results
@@ -73,6 +88,6 @@ def inference_datecode(ocr_model, datecode_bboxes_paths):
 
 if __name__ == "__main__":
     ocr_model = paddleocr.PaddleOCR(use_angle_cls=True, lang='ch')  # 反向检测，语言
-    input_path = ["some_demo_image/3_qi_ma/Snipaste_2025-03-16_00-06-08.png"]
+    input_path = ["some_demo_image/3_qi_ma/Snipaste_2025-03-16_11-58-40.png"]
     ret = inference_datecode(ocr_model, input_path)
     print(ret)
